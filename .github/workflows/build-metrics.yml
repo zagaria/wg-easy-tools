@@ -2,7 +2,7 @@ name: Build Metrics image
 
 on:
   push:
-    branches: [pipeline-test]
+    branches: [main]
     paths:
       - 'metrics/**'
     tags: ['v*.*.*']
