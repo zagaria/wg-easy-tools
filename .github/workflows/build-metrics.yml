@@ -1,19 +1,19 @@
-name: Build Watchdog image
+name: Build Metrics image
 
 on:
   push:
     branches: [pipeline-test]
     paths:
-      - 'watchdog/**'
+      - 'metrics/**'
     tags: ['v*.*.*']
   pull_request:
     branches: [main]
     paths:
-      - 'watchdog/**'
+      - 'metrics/**'
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/watchdog
+  IMAGE_NAME: ${{ github.repository }}/metrics
 
 jobs:
   build:
@@ -47,8 +47,8 @@ jobs:
       - name: Build and Push Docker image
         uses: docker/build-push-action@v6.1.0
         with:
-          context: ./watchdog
-          file: ./watchdog/Dockerfile
+          context: ./metrics
+          file: ./metrics/Dockerfile
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
